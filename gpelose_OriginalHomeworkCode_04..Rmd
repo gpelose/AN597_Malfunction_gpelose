@@ -7,8 +7,7 @@ output: html_document
 
 [1] Write a simple R function, Z.prop.test(), that can perform one- or two-sample Z-tests for proportion data, using the following guidelines:
 
-
-
+I am struggling on where to begin here, I will need to spend more time over tomorrow and sunday to try and figure this out.. 
 
 
 
@@ -60,8 +59,9 @@ Now I will be creating a scatter plot in ggplot
 g <- ggplot(data = d, aes(x = MaxLongevity_m, y = Brain_Size_Species_Mean, main = "Brain Size vs. Longevity"))
 g <- g + geom_point()
 g <- g + geom_smooth(method = "lm", formula = y ~ x)
-g <- g + geom_text(y=)
+g
 ```
 
+I can not figure out how to place the equation onto the graph. 
 
 
