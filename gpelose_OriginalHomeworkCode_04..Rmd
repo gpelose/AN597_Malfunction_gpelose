@@ -1,0 +1,67 @@
+---
+title: "gpelose_OriginalHomeworkCode_04"
+author: "Greg Pelose"
+date: "10/23/2019"
+output: html_document
+---
+
+[1] Write a simple R function, Z.prop.test(), that can perform one- or two-sample Z-tests for proportion data, using the following guidelines:
+
+
+
+
+
+
+[2] The dataset from Kamilar and Cooper has in it a large number of variables related to life history and body size. For this exercise, the end aim is to fit a simple linear regression model to predict longevity (MaxLongevity_m) measured in months from species’ brain size (Brain_Size_Species_Mean) measured in grams. Do the following for both  longevity~brain size and log(longevity)~log(brain size):
+
+I will first install my packages.
+
+```{r}
+install.packages("ggplot2")
+install.packages("curl")
+```
+
+I will then load these packages into my library
+
+```{r}
+library(ggplot2)
+library(curl)
+```
+
+Now I will be loading my dataset
+
+```{r}
+f <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/master/AN597_Fall19/KamilarAndCooperData.csv")
+d <- read.csv(f, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(d)
+```
+
+Success, remind to self to watch out for the NA values. 
+
+```{r}
+names(d)
+```
+
+```{r}
+p <- plot(data = d, Brain_Size_Species_Mean ~ MaxLongevity_m, col = "blue", main = "Brain Size against Longevity")
+geom_line(p)
+```
+
+creating a Model 1 regression.
+
+```{r}
+m <- lm(Brain_Size_Species_Mean ~ MaxLongevity_m, data = d)
+m
+```
+
+Now I will be creating a scatter plot in ggplot 
+
+```{r}
+g <- ggplot(data = d, aes(x = MaxLongevity_m, y = Brain_Size_Species_Mean, main = "Brain Size vs. Longevity"))
+g <- g + geom_point()
+g <- g + geom_smooth(method = "lm", formula = y ~ x)
+g <- g + geom_text(y=)
+```
+
+
+
