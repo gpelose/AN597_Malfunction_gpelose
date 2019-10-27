@@ -9,7 +9,32 @@ output: html_document
 
 I am struggling on where to begin here, I will need to spend more time over tomorrow and sunday to try and figure this out.. 
 
+```{r}
+#first the one sample- normality guidelines:
+z.test <- function(p1,n1,p0,p2=NULL,n2=NULL,conf.level=0.95,alternative="two.sided") {
+   if(p1 == 0){
+    return(0)}
+    else {if((n1 * p1 < 5) | (n1 * (1-p1) > 5)){
+          return(c("Warning: Not Normal", (p1-p0) / sqrt((p0 * (1-p0))/n1)))}
+          else(return((p1-p0) / sqrt((p0 * (1-p0))/n1)))}
+}
+#now a function for two sample test
+z.test.2 <- function(p1,n1,p0,p2,n2,conf.level=0.95,alternative="two.sided") {
+   if(p1 == 0){
+    return(0)}
+    else {if((n1 * p1 < 5) | (n1 * (1-p1) > 5)){
+          return(c("Warning: Not Normal", (p1-p0) / sqrt((p0 * (1-p0))/n1)))}
+          else(return((p1-p0) / sqrt((p0 * (1-p0))/n1)))}
+  #for second sample
+  if(p2 == 0){
+    return(0)}
+    else {if((n2 * p2 < 5) | (n2 * (1-p2) > 5)){
+          return(c("Warning: Not Normal", (p2-p0) / sqrt((p0 * (1-p0))/n2)))}
+          else(return((p2-p0) / sqrt((p0 * (1-p0))/n2)))}
+}
+```
 
+This is code from my lab member that I have been attempting to unpackage. 
 
 [2] The dataset from Kamilar and Cooper has in it a large number of variables related to life history and body size. For this exercise, the end aim is to fit a simple linear regression model to predict longevity (MaxLongevity_m) measured in months from species’ brain size (Brain_Size_Species_Mean) measured in grams. Do the following for both  longevity~brain size and log(longevity)~log(brain size):
 
@@ -108,6 +133,56 @@ ci
 
 ```
 
+Now I will produce a point estimate and associated 90 percent PI for the longevity of a species whose brain weight is 800 gm. Do you trust the model to predict observations accurately for this value of the explanatory variable? Why or why not?
+
+```{r}
+nci <- predict(m, newdata = data.frame(Brain_Size_Species_Mean = d$Brain_Size_Species_Mean), interval = "confidence", 
+    level = 0.95)  # for a vector of values
+head(nci)
+```
+
+this above is my first attempt at a percent estimate.
+I will try again.
+
+```{r}
+nci <- predict(m, newdata = data.frame(logBrain_Size_Species_Mean = 800), interval = "confidence", 
+    level = 0.95)  
+nci
+
+```
+
+Boom. Now I will try and graph this action.
+
+Just kidding, I messed up and now I am going to try again. 
+
+```{r}
+nnci <- predict(m, newdata = data.frame(logBrain_Size_Species_Mean = d$logBrain_Size_Species_Mean), interval = "confidence", 
+    level = 0.95)  # for a vector of values
+head(nnci)
+```
+
+```{r}
+df <- cbind(df, nnci)
+names(df) <- c("x", "y", "yhat", "CIfit", "CIlwr", "CIupr")
+head(df)
+```
+
+```{r}
+g <- ggplot(data = df, aes(x = x, y = y))
+g <- g + geom_point(alpha = 1/2)
+g <- g + geom_line(aes(x = x, y = CIfit), colour = "black")
+g <- g + geom_line(aes(x = x, y = CIlwr), colour = "blue")
+g <- g + geom_line(aes(x = x, y = CIupr), colour = "blue")
+g
+```
+
+When comparing my plot from line 152 and my plot from 87 I see that in my qqplot from 87, many more values fall in the confidence intervals so I would say that this plot is better in my opinion. I am not exactly sure if I have analyzed this properly but this is what I got from my graphs. 
+
+Challenges
+1. My biggest challenge was figuring out number one. I tried to figure something out but really struggled with this. My group members code was able to help me kind of understand this but I am still quite lost. 
+2. For the second questions I am able to find the code but I struggled to understand what the values fully meant for some of the poritons.
+3. Time, I am struggling to find enough time, I need large chunks of time (4+) hours to really figure stuff out. I have been able to find many of these chunks but it is just not enough unfortunately. 
+4. I need to re-go through some of the models that explain the statistics I think to fully understand what the meaning of some of these modules are telling me. 
 
 
 
