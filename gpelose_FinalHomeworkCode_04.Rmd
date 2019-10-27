@@ -67,7 +67,49 @@ g <- g + geom_smooth(method = "lm", formula = y ~ x)
 g
 ```
 
-The plots 
+The plot(m) graphs all look quite disorganized, by the scatterplot that I created in ggplot looks slightly normal in the beginning but has many more outliers as you increase both brian size and 
+***
+Next I will be taking the log of each of the variables to try and make the data come out better. 
+
+```{r}
+d$logMaxLongevity_m <- log(d$MaxLongevity_m)
+d$logBrain_Size_Species_Mean <- log(d$Brain_Size_Species_Mean)
+plot(data = d, logMaxLongevity_m ~ logBrain_Size_Species_Mean)
+model <- lm(data = d, logMaxLongevity_m ~ logBrain_Size_Species_Mean)
+summary(model)
+plot(model)
+```
+
+Above, I added all of the code into one line of code. The r squared is .5751, this is a better number than before. 
+
+```{r}
+qqPlot(model$residuals)
+```
+
+The qqplot shows that everything is inside of the confidence intervals.
+***
+NEXT SECTION
+***
+Identify and interpret the point estimate of the slope (β1), as well as the outcome of the test associated with the hypotheses H0: β1 = 0; HA: β1 ≠ 0.
+
+```{r}
+b <- d$logBrain_Size_Species_Mean
+l <- d$logMaxLongevity_m
+slope <- lm(l ~ b)
+slope
+```
+
+This function above shows me the slope (B1), this value is .2341.
+
+```{r}
+m <- lm(data = d, logMaxLongevity_m ~ logBrain_Size_Species_Mean)
+ci <- confint(m, level = 0.90)  # using the results of lm()
+ci
+
+```
+
+
+
 
 
 
