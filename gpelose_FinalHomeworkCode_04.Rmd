@@ -179,7 +179,7 @@ g
 When comparing my plot from line 152 and my plot from 87 I see that in my qqplot from 87, many more values fall in the confidence intervals so I would say that this plot is better in my opinion. I am not exactly sure if I have analyzed this properly but this is what I got from my graphs. 
 
 Challenges
-1. My biggest challenge was figuring out number one. I tried to figure something out but really struggled with this. My group members code was able to help me kind of understand this but I am still quite lost. 
+1. My biggest challenge was figuring out number one. I tried to figure something out but really struggled with this. My group members code was able to help me kind of understand this but I am still quite lost with how they created their function. 
 2. For the second questions I am able to find the code but I struggled to understand what the values fully meant for some of the poritons.
 3. Time, I am struggling to find enough time, I need large chunks of time (4+) hours to really figure stuff out. I have been able to find many of these chunks but it is just not enough unfortunately. 
 4. I need to re-go through some of the models that explain the statistics I think to fully understand what the meaning of some of these modules are telling me. 
