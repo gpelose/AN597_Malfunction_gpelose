@@ -34,7 +34,7 @@ z.test.2 <- function(p1,n1,p0,p2,n2,conf.level=0.95,alternative="two.sided") {
 }
 ```
 
-This is code from my lab member that I have been attempting to unpackage. 
+This is code from my lab member that I have been attempting to unpackage as I was unsuccessful in figuring this out on my own.  
 
 [2] The dataset from Kamilar and Cooper has in it a large number of variables related to life history and body size. For this exercise, the end aim is to fit a simple linear regression model to predict longevity (MaxLongevity_m) measured in months from species’ brain size (Brain_Size_Species_Mean) measured in grams. Do the following for both  longevity~brain size and log(longevity)~log(brain size):
 
@@ -183,6 +183,7 @@ Challenges
 2. For the second questions I am able to find the code but I struggled to understand what the values fully meant for some of the poritons.
 3. Time, I am struggling to find enough time, I need large chunks of time (4+) hours to really figure stuff out. I have been able to find many of these chunks but it is just not enough unfortunately. 
 4. I need to re-go through some of the models that explain the statistics I think to fully understand what the meaning of some of these modules are telling me. 
+5. I also learned that I need to relax a little more while doing this code. I struggled with relaxing when I feel like I cant figure stuff out but that is not good for me so I need to relax more. 
 
 
 
